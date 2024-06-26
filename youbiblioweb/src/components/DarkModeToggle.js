@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import './DarkModeToggle.css'; 
+import '../assets/styles/DarkModeToggle.css';
 
 function DarkModeToggle({ darkMode, setDarkMode }) {
     return (
@@ -10,4 +10,5 @@ function DarkModeToggle({ darkMode, setDarkMode }) {
 }
 
 export default DarkModeToggle;
+
 

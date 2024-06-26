@@ -1,0 +1,31 @@
+.user-menu {
+    position: relative;
+    cursor: pointer;
+}
+
+    .user-menu .menu {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        background-color: white;
+        color: black;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+    }
+
+    .user-menu:hover .menu {
+        display: block;
+    }
+
+    .user-menu .menu a {
+        display: block;
+        padding: 10px;
+        color: black;
+        text-decoration: none;
+    }
+
+        .user-menu .menu a:hover {
+            background-color: #f1f1f1;
+        }

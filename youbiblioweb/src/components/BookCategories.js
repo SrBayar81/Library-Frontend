@@ -1,5 +1,5 @@
 import React from 'react';
-import './BookCategories.css'; 
+import '../assets/styles/BookCategories.css';
 
 function BookCategories() {
     return (
@@ -12,4 +12,5 @@ function BookCategories() {
 }
 
 export default BookCategories;
+
 

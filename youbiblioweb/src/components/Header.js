@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import UserMenu from './UserMenu';
 import SearchBar from './SearchBar';
 import DarkModeToggle from './DarkModeToggle';
-import './Header.css'; 
+import '../assets/styles/Header.css';
 
 function Header() {
     const [darkMode, setDarkMode] = useState(false);
@@ -13,7 +13,7 @@ function Header() {
             <div className="logo">
                 <Link to="/">YouBiblioWeb</Link>
             </div>
-            <nav>
+            <nav className="nav">
                 <Link to="/catalog">Catálogo</Link>
                 <Link to="/lists">Listas</Link>
             </nav>
@@ -25,4 +25,5 @@ function Header() {
 }
 
 export default Header;
+
 

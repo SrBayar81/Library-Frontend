@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -16,35 +16,22 @@ function App() {
     return (
         <Router>
             {isAuthenticated ? <Header /> : null}
-            <Switch>
-                <Route path="/" exact>
-                    {isAuthenticated ? <HomePage /> : <Redirect to="/login" />}
-                </Route>
-                <Route path="/catalog">
-                    {isAuthenticated ? <CatalogPage /> : <Redirect to="/login" />}
-                </Route>
-                <Route path="/profile">
-                    {isAuthenticated ? <ProfilePage /> : <Redirect to="/login" />}
-                </Route>
-                <Route path="/favorites">
-                    {isAuthenticated ? <FavoritesPage /> : <Redirect to="/login" />}
-                </Route>
-                <Route path="/reservations">
-                    {isAuthenticated ? <ReservationsPage /> : <Redirect to="/login" />}
-                </Route>
-                <Route path="/loans">
-                    {isAuthenticated ? <LoansPage /> : <Redirect to="/login" />}
-                </Route>
-                <Route path="/login">
-                    <LoginPage />
-                </Route>
+            <Routes>
+                <Route path="/" element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />} />
+                <Route path="/catalog" element={isAuthenticated ? <CatalogPage /> : <Navigate to="/login" />} />
+                <Route path="/profile" element={isAuthenticated ? <ProfilePage /> : <Navigate to="/login" />} />
+                <Route path="/favorites" element={isAuthenticated ? <FavoritesPage /> : <Navigate to="/login" />} />
+                <Route path="/reservations" element={isAuthenticated ? <ReservationsPage /> : <Navigate to="/login" />} />
+                <Route path="/loans" element={isAuthenticated ? <LoansPage /> : <Navigate to="/login" />} />
+                <Route path="/login" element={<LoginPage />} />
                 {/* Otras rutas aquí */}
-            </Switch>
+            </Routes>
             {isAuthenticated ? <Footer /> : null}
         </Router>
     );
 }
 
 export default App;
+
 
 

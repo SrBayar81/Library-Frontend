@@ -1,0 +1,9 @@
+.dark-mode-toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+    .dark-mode-toggle input {
+        margin-right: 8px;
+    }

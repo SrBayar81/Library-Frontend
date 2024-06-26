@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './UserMenu.css'; 
+import '../assets/styles/UserMenu.css';
 
 function UserMenu() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -22,4 +22,5 @@ function UserMenu() {
 }
 
 export default UserMenu;
+
 
