@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../assets/styles/LoginPage.css';
 
-function LoginPage() {
+
+function LoginPage({ setIsAuthenticated }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
-        // Aqui hare la logica del inicio de session
+        // Logica de autentificacion coming soon, por ahora todos son validos
+        if (username && password) {
+            setIsAuthenticated(true);
+            navigate('/');
+        } else {
+            alert('Invalid credentials');
+        }
     };
 
     return (
@@ -52,5 +61,6 @@ function LoginPage() {
 }
 
 export default LoginPage;
+
 
 

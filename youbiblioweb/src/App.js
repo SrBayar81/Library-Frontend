@@ -23,7 +23,7 @@ function App() {
                 <Route path="/favorites" element={isAuthenticated ? <FavoritesPage /> : <Navigate to="/login" />} />
                 <Route path="/reservations" element={isAuthenticated ? <ReservationsPage /> : <Navigate to="/login" />} />
                 <Route path="/loans" element={isAuthenticated ? <LoansPage /> : <Navigate to="/login" />} />
-                <Route path="/login" element={<LoginPage />} />
+                <Route path="/login" element={<LoginPage setIsAuthenticated={setIsAuthenticated} />} />
                 {/* Otras rutas aquí */}
             </Routes>
             {isAuthenticated ? <Footer /> : null}
@@ -32,6 +32,7 @@ function App() {
 }
 
 export default App;
+
 
 
 

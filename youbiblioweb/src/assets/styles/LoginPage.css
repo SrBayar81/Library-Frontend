@@ -1,5 +1,5 @@
 .login-container {
-    background-image: url('../image/background.jpg'); /* Ruta corregida */
+    background-image: url('../image/background.jpg'); 
     background-size: cover;
     height: 100vh;
     display: flex;
