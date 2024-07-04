@@ -1,0 +1,27 @@
+
+.dropdown-menu {
+    position: absolute;
+    right: 1rem;
+    background-color: #3D3D3D;
+    color: #FFF0D7;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+    .dropdown-item img {
+        width: 20px;
+        height: 20px;
+        margin-right: 0.5rem;
+    }
+
+    .dropdown-item:hover {
+        background-color: #292525;
+    }

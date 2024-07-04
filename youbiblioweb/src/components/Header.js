@@ -1,29 +1,46 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import UserMenu from './UserMenu';
-import SearchBar from './SearchBar';
-import DarkModeToggle from './DarkModeToggle';
+﻿import React, { useState } from 'react';
 import '../assets/styles/Header.css';
+import iconoLupa from '../assets/image/iconoLupa.jpg';
+import iconoPerfil from '../assets/image/iconoPerfil.jpg';
+import DropdownMenu from './DropdownMenu';
 
 function Header() {
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(true);
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const toggleDarkMode = () => {
+        setDarkMode(!darkMode);
+    };
+
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
 
     return (
-        <header className={darkMode ? 'dark-mode' : ''}>
-            <div className="logo">
-                <Link to="/">YouBiblioWeb</Link>
+        <header className={darkMode ? 'header dark' : 'header light'}>
+            <div className="logo" onClick={() => window.location.href = '/'}>
+                <span>You</span><strong>Biblio</strong>Web
             </div>
-            <nav className="nav">
-                <Link to="/catalog">Cat�logo</Link>
-                <Link to="/lists">Listas</Link>
+            <nav>
+                <a href="/catalog">Catalogo</a>
+                <a href="/lists">Listas</a>
+                <input type="text" placeholder="Buscar" />
+                <button className="search-button"><img src={iconoLupa} alt="Buscar" /></button>
+                <button className="mode-button" onClick={toggleDarkMode}>
+                    {darkMode ? '🌞' : '🌜'}
+                </button>
+                <div className="profile" onClick={toggleMenu}>
+                    <img src={iconoPerfil} alt="Perfil" />
+                    <span>Profesora1234</span>
+                    <span className="arrow">{menuOpen ? '▲' : '▼'}</span>
+                </div>
             </nav>
-            <SearchBar />
-            <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
-            <UserMenu />
+            {menuOpen && <DropdownMenu />}
         </header>
     );
 }
 
 export default Header;
+
 
 

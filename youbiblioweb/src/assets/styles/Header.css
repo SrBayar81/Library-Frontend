@@ -1,58 +1,92 @@
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #343a40;
-    color: white;
+    justify-content: space-between;
+    background-color: #3D3D3D;
+    padding: 0.5rem 1rem;
 }
 
-    .header .logo {
-        font-size: 1.5em;
-        font-weight: bold;
+    .header.light {
+        background-color: #f2e7d4;
+        color: #292525;
     }
 
-    .header .nav {
-        display: flex;
-        gap: 15px;
+    .header.dark {
+        background-color: #3D3D3D;
+        color: #FFF0D7;
     }
 
-        .header .nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 1em;
-        }
+.logo span {
+    color: #FFF0D7;
+}
 
-            .header .nav a:hover {
-                text-decoration: underline;
-            }
+.logo strong {
+    font-weight: bold;
+    color: #FFF0D7;
+}
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 30%;
+}
 
-    .header .user-menu {
-        position: relative;
+    nav input {
+        padding: 0.5rem;
+        background-color: #FFF;
+        color: #3D3D3D;
     }
 
-        .header .user-menu .menu {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 100%;
-            background-color: white;
-            color: black;
-            border: 1px solid #ddd;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
+nav a {
+    margin: 0 1rem;
+    color: #FFF0D7;
+}
 
-        .header .user-menu:hover .menu {
-            display: block;
-        }
 
-        .header .user-menu .menu a {
-            display: block;
-            padding: 10px;
-            color: black;
-            text-decoration: none;
-        }
+nav input {
+    padding: 0.5rem;
+    background-color: #FFF;
+    color: #3D3D3D;
+}
 
-            .header .user-menu .menu a:hover {
-                background-color: #f1f1f1;
-            }
+.search-button, .mode-button {
+    padding: 0.4rem;
+    background-color: #FFF;
+    color: #3D3D3D;
+    margin-left: 0.4rem;
+}
+
+    .search-button img {
+        width: 15px; 
+        height: 15px; 
+    }
+
+
+
+.profile {
+    display: flex;
+    align-items: center;
+    margin-left: 3rem; 
+    margin-right: 1rem; 
+}
+
+    .profile img {
+        width: 30px;
+        height: 30px;
+        margin-right: 0.5rem;
+    }
+
+.arrow {
+    margin-left: 0.5rem;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 8%; 
+    right: 0; 
+    background-color: #FFF;
+    border: 1px solid #CCC;
+    padding: 0.5rem;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 100; 
+}

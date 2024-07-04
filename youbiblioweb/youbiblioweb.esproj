@@ -14,4 +14,7 @@
   <ItemGroup>
     <Folder Include="src\assets\image\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\assets\styles\globals.css" />
+  </ItemGroup>
 </Project>

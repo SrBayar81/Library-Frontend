@@ -1,0 +1,16 @@
+
+.home-page {
+    padding: 1rem;
+}
+
+.category-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.books {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

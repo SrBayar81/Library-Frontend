@@ -1,0 +1,16 @@
+
+.category-button {
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    background-color: #4D4D4D;
+    color: #FFF0D7;
+    border-radius: 0.5rem;
+}
+
+    .category-button.selected {
+        background-color: #FF6B6B;
+    }
+
+    .category-button:hover {
+        background-color: #FF6B6B;
+    }

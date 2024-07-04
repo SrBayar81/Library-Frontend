@@ -3,12 +3,13 @@ import '../assets/styles/DarkModeToggle.css';
 
 function DarkModeToggle({ darkMode, setDarkMode }) {
     return (
-        <button onClick={() => setDarkMode(!darkMode)}>
+        <button className="dark-mode-toggle" onClick={() => setDarkMode(!darkMode)}>
             {darkMode ? '🌞' : '🌜'}
         </button>
     );
 }
 
 export default DarkModeToggle;
+
 
 
