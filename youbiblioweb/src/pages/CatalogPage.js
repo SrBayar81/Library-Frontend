@@ -76,32 +76,82 @@ const CatalogoPage = () => {
                     Busqueda Avanzada
                 </div>
                 <div className="advanced-search-content">
-                    {['Filtros', 'Generos', 'Tipo'].map((section) => (
-                        <div key={section} className="advanced-search-item">
-                            <div className="advanced-search-title" onClick={() => toggleAdvancedSearch(section)}>
-                                {section}
-                                <span className={advancedSearchOpen[section] ? 'arrow-down' : 'arrow-right'}>
-                                    {advancedSearchOpen[section] ? '▼' : '▶'}
-                                </span>
-                            </div>
-                            {advancedSearchOpen[section] && (
-                                <div className="advanced-search-options">
-                                    <label>
-                                        <input type="checkbox" />
-                                        Opción 1
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" />
-                                        Opción 2
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" />
-                                        Opción 3
-                                    </label>
-                                </div>
-                            )}
+                    <div className="advanced-search-item">
+                        <div className="advanced-search-title" onClick={() => toggleAdvancedSearch('Filtros')}>
+                            Filtros
+                            <span className={advancedSearchOpen.Filtros ? 'arrow-down' : 'arrow-right'}>
+                                {advancedSearchOpen.Filtros ? '▼' : '▶'}
+                            </span>
                         </div>
-                    ))}
+                        {advancedSearchOpen.Filtros && (
+                            <div className="advanced-search-options">
+                                <label>
+                                    <input type="checkbox" />
+                                    Novela
+                                </label>
+                                <label>
+                                    <input type="checkbox" />
+                                    Obra Literaria
+                                </label>
+                                <label>
+                                    <input type="checkbox" />
+                                    Comic
+                                </label>
+                            </div>
+                        )}
+                    </div>
+                    <div className="advanced-search-item">
+                        <div className="advanced-search-title" onClick={() => toggleAdvancedSearch('Generos')}>
+                            Generos
+                            <span className={advancedSearchOpen.Generos ? 'arrow-down' : 'arrow-right'}>
+                                {advancedSearchOpen.Generos ? '▼' : '▶'}
+                            </span>
+                        </div>
+                        {advancedSearchOpen.Generos && (
+                            <div className="advanced-search-options">
+                                <label>
+                                    <input type="checkbox" />
+                                    Accion
+                                </label>
+                                <label>
+                                    <input type="checkbox" />
+                                    Drama
+                                </label>
+                                <label>
+                                    <input type="checkbox" />
+                                    Romance
+                                </label>
+                                <label>
+                                    <input type="checkbox" />
+                                    Misterio
+                                </label>
+                            </div>
+                        )}
+                    </div>
+                    <div className="advanced-search-item">
+                        <div className="advanced-search-title" onClick={() => toggleAdvancedSearch('Tipo')}>
+                            Tipo
+                            <span className={advancedSearchOpen.Tipo ? 'arrow-down' : 'arrow-right'}>
+                                {advancedSearchOpen.Tipo ? '▼' : '▶'}
+                            </span>
+                        </div>
+                        {advancedSearchOpen.Tipo && (
+                            <div className="advanced-search-options">
+                                <label>
+                                    <input type="checkbox" />
+                                    Infantil
+                                </label>
+                                <label>
+                                    <input type="checkbox" />
+                                    +18
+                                </label>
+                                <label>
+                                    <input type="checkbox" />
+                                    Adolescentes
+                                </label>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
             <div className="book-list">
@@ -127,7 +177,7 @@ const CatalogoPage = () => {
                 </div>
                 <div className="book-item">
                     <img src={categoriaBook6} alt="Book 6" />
-                    <div className="book-title">La Sombre del Viento</div>
+                    <div className="book-title">La Sombra del Viento</div>
                 </div>
             </div>
         </div>
@@ -135,8 +185,6 @@ const CatalogoPage = () => {
 };
 
 export default CatalogoPage;
-
-
 
 
 

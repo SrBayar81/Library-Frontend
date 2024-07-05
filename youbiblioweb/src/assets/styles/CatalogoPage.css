@@ -1,17 +1,19 @@
 .catalogo-container {
     background-color: #292525;
     color: white;
-    padding: 20px;
+    padding: 80px;
     display: flex;
     flex-direction: column;
+    align-items: center; /* Centra todo el contenido verticalmente */
 }
 
 .search-bar {
     display: flex;
     align-items: center;
-    justify-content: center; /* Para centrar los elementos horizontalmente */
-    margin-bottom: 20px;
-    margin-top: 40px; /* Ajusta este margen según tu preferencia */
+    justify-content: center; /* Centra horizontalmente los elementos */
+    margin-bottom: 40px;
+    margin-top: 40px;
+    margin-left:40px;
 }
 
 .advanced-search {
@@ -29,7 +31,6 @@
     border-radius: 5px 5px 0 0;
 }
 
-
 .search-input {
     flex: 1;
     padding: 10px;
@@ -46,27 +47,51 @@
 
 .dropdown-button {
     background-color: #FFF0D7;
-    color: black;
+    color: #45322E;
     padding: 10px;
+    margin-bottom:25px;
     border-radius: 5px;
     cursor: pointer;
     display: flex;
     align-items: center;
 }
 
+    .dropdown-button:hover {
+        background-color: #FFF0D7; /* Mantener el color al pasar el mouse */
+    }
+
+        .dropdown-button:hover .arrow-up,
+        .dropdown-button:hover .arrow-down {
+            color: #45322E; /* Color de texto al pasar el mouse */
+        }
+
 .search-icon {
     width: 40px;
     height: 40px;
     cursor: pointer;
+    margin-bottom: 25px;
+    margin-left: 7px;
+  
+    border-radius: 20%; /* Asegura que el botón sea circular */
 }
-
+    .search-icon:hover {
+        color: #45322E;
+    }
+        .search-icon img {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 20px;
+        margin-right: 35px;
+        object-fit: cover; /* Ajusta la imagen al contenedor circular */
+        
+    }
 
 .advanced-search-content {
     padding: 10px;
 }
 
 .advanced-search-item {
-    margin: 10px 0;
+    margin: 20px 0;
 }
 
 .advanced-search-title {
@@ -80,7 +105,7 @@
 .advanced-search-options label {
     display: block;
     margin: 5px 0;
-    color: black;
+    color: #45322E; /* Color de texto ajustado según tus preferencias */
 }
 
 .advanced-search-options input {
@@ -91,6 +116,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    justify-content: center; /* Centra los elementos horizontalmente */
 }
 
 .book-item {
@@ -100,8 +126,8 @@
 }
 
     .book-item img {
-        width: 150px; /* Tamaño ajustable según tus preferencias */
-        height: auto;
+        width: 150px; /* Ajusta el tamaño de la imagen al contenedor */
+        height: 150px;
         border-radius: 5px;
     }
 
