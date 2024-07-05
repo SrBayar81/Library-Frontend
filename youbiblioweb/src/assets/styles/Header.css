@@ -1,3 +1,5 @@
+/* Header.css */
+
 .header {
     display: flex;
     align-items: center;
@@ -81,10 +83,11 @@ nav {
     margin-left: 0.5rem;
 }
 
-.dropdown-menu {
+
+.header-dropdown-menu {
     position: absolute;
-    top: 13%;
-    right: 0;
+    top: 96px; /* Ajusta según sea necesario */
+    right: 10px; /* Ajusta según sea necesario */
     background-color: #FFF;
     border: 1px solid #CCC;
     padding: 0.5rem;

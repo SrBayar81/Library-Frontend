@@ -1,0 +1,117 @@
+
+/* CatalogoPage.css */
+.catalogo-container {
+    background-color: #292525;
+    color: white;
+    padding: 20px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: #45322E;
+    margin-right: 10px;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-button {
+    background-color: #FFF0D7;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+    .dropdown-button .arrow-down {
+        margin-left: 10px;
+    }
+
+    .dropdown-button .arrow-up {
+        margin-left: 10px;
+    }
+
+/* Nueva clase para el dropdown en el catálogo */
+.catalog-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.catalog-dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+    .catalog-dropdown-item:hover {
+        background-color: #FFF0D7;
+    }
+
+.search-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.advanced-search {
+    background-color: #FFF0D7;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.advanced-search-header {
+    background-color: #45322E;
+    color: white;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+}
+
+.advanced-search-content .advanced-search-item {
+    margin: 10px 0;
+}
+
+.advanced-search-title {
+    font-size: 20px; /* Puedes ajustar este tamaño según tus necesidades */
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.book-item {
+    flex: 1 0 30%;
+    text-align: center;
+}
+
+    .book-item img {
+        width: 100%;
+        border-radius: 5px;
+    }
+
+.book-title {
+    margin-top: 10px;
+    color: #FFF0D7;
+}

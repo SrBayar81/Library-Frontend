@@ -24,7 +24,7 @@ const books = {
     populares: [
         { id: 1, imgSrc: popularesLibro1, title: 'Cuento de hadas' },
         { id: 2, imgSrc: popularesLibro2, title: 'El Principito' },
-        { id: 3, imgSrc: popularesLibro3, title: 'Alicia' },
+        { id: 3, imgSrc: popularesLibro3, title: 'Harry Potter' },
         { id: 4, imgSrc: popularesLibro4, title: 'Don Quijote de la Mancha' },
         { id: 5, imgSrc: popularesLibro5, title: 'Carcoma' },
     ],

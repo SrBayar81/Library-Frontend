@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import CatalogPage from './pages/CatalogPage';
-import LoginPage from './pages/LoginPage'; // Asegúrate de importar tu componente LoginPage
-import ProtectedRoute from './components/ProtectedRoute'; // Crea este componente para rutas protegidas
+import LoginPage from './pages/LoginPage';
+import ProtectedRoute from './components/ProtectedRoute';
 import './assets/styles/index.css';
 
 function App() {
@@ -50,6 +50,8 @@ const Layout = ({ children }) => {
 };
 
 export default App;
+
+
 
 
 
