@@ -4,42 +4,75 @@
     padding: 80px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra todo el contenido verticalmente */
+    align-items: center; 
 }
 
 .search-bar {
     display: flex;
     align-items: center;
-    justify-content: center; /* Centra horizontalmente los elementos */
-    margin-bottom: 40px;
-    margin-top: 40px;
-    margin-left:40px;
-}
-
-.advanced-search {
-    background-color: #FFF0D7;
-    border-radius: 5px;
-    padding: 20px;
+    width: 100%; /* Ajuste de ancho completo */
+    justify-content: center;
     margin-bottom: 20px;
-    color: #45322E; /* Color de texto ajustado según tus preferencias */
-}
-
-.advanced-search-header {
-    background-color: #45322E;
-    color: white;
-    padding: 10px;
-    border-radius: 5px 5px 0 0;
 }
 
 .search-input {
-    flex: 1;
-    padding: 10px;
+    flex: 2; /* Aumentar el tamaño del input */
+    padding: 15px; /* Hacer el input más grande */
+    font-size: 1.2em; /* Aumentar el tamaño del texto */
     border: none;
     border-radius: 5px;
     background-color: white;
     color: #45322E;
     margin-right: 10px;
 }
+
+.dropdown-button {
+    flex: 1; /* Ajuste el tamaño del botón de filtro */
+    background-color: #FFF0D7;
+    color: #45322E;
+    padding: 15px; /* Hacer el botón más grande */
+    font-size: 1.2em; /* Aumentar el tamaño del texto */
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    width: 50px; /* Aumentar el tamaño del botón de búsqueda */
+    height: 50px;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-bottom: 25px;
+    border-radius: 25%;
+}
+
+    .search-icon img {
+        width: 30px; /* Aumentar el tamaño del icono */
+        height: 30px;
+        object-fit: cover;
+    }
+
+
+.advanced-search {
+    background-color: #FFF0D7;
+    border-radius: 7px;
+    padding: 60px;
+    margin-bottom: 70px;
+    color: #45322E; 
+}
+
+.advanced-search-header {
+    font-size: 25px;
+    background-color: #45322E;
+    color: white;
+    padding: 10px;
+    margin-bottom: 30px;
+    border-radius: 5px 5px 0 0;
+}
+
+
 
 .dropdown {
     position: relative;
@@ -57,45 +90,27 @@
 }
 
     .dropdown-button:hover {
-        background-color: #FFF0D7; /* Mantener el color al pasar el mouse */
+        background-color: #FFF0D7; 
     }
 
         .dropdown-button:hover .arrow-up,
         .dropdown-button:hover .arrow-down {
-            color: #45322E; /* Color de texto al pasar el mouse */
+            color: #45322E; 
         }
 
-.search-icon {
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    margin-bottom: 25px;
-    margin-left: 7px;
+
   
-    border-radius: 20%; /* Asegura que el botón sea circular */
-}
-    .search-icon:hover {
-        color: #45322E;
-    }
-        .search-icon img {
-        width: 24px;
-        height: 24px;
-        margin-bottom: 20px;
-        margin-right: 35px;
-        object-fit: cover; /* Ajusta la imagen al contenedor circular */
-        
-    }
 
 .advanced-search-content {
-    padding: 10px;
+    padding: 20px;
 }
 
 .advanced-search-item {
-    margin: 20px 0;
+    margin: 30px 0;
 }
 
 .advanced-search-title {
-    font-size: 20px; /* Ajusta este tamaño según tus necesidades */
+    font-size: 22px; 
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -103,9 +118,10 @@
 }
 
 .advanced-search-options label {
+    font-size: 16px;
     display: block;
     margin: 5px 0;
-    color: #45322E; /* Color de texto ajustado según tus preferencias */
+    color: #45322E;
 }
 
 .advanced-search-options input {
@@ -116,7 +132,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center; /* Centra los elementos horizontalmente */
+    justify-content: center; 
 }
 
 .book-item {
@@ -126,16 +142,16 @@
 }
 
     .book-item img {
-        width: 150px; /* Ajusta el tamaño de la imagen al contenedor */
-        height: 150px;
-        border-radius: 5px;
+        width: 220px; 
+        height: 220px;
+        border-radius: 15px;
     }
 
     .book-item:hover img {
-        transform: scale(1.05);
+        transform: scale(1.15);
     }
 
 .book-title {
-    margin-top: 10px;
-    color: #FFF0D7; /* Color de texto ajustado según tus preferencias */
+    margin-top: 20px;
+    color: #FFF0D7; 
 }
