@@ -1,8 +1,9 @@
-﻿import React, { useState } from 'react';
+﻿// HomePage.js
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../assets/styles/HomePage.css';
 import CategoryButton from '../components/CategoryButton';
 import BookCard from '../components/BookCard';
-
 
 import popularesLibro1 from '../assets/image/popularesLibro1.jpg';
 import popularesLibro2 from '../assets/image/popularesLibro2.jpg';
@@ -34,7 +35,6 @@ const books = {
         { id: 8, imgSrc: masutilizadosLibro3, title: '20 Mil leguas' },
         { id: 9, imgSrc: masutilizadosLibro4, title: 'Marginado' },
         { id: 10, imgSrc: masutilizadosLibro5, title: 'Adios a la Inflamacion' },
-        
     ],
     educativos: [
         { id: 11, imgSrc: educativosLibro1, title: 'En la clase si se juega' },
@@ -42,15 +42,20 @@ const books = {
         { id: 13, imgSrc: educativosLibro3, title: 'Los Niños Filosofos' },
         { id: 14, imgSrc: educativosLibro4, title: 'El Banquete Pedagogo' },
         { id: 15, imgSrc: educativosLibro5, title: 'Capufas' },
-        
     ]
 };
 
 function HomePage() {
     const [selectedCategory, setSelectedCategory] = useState('populares');
+    const navigate = useNavigate();
+
+    const handleBookClick = (category, id) => {
+        navigate(`/book/${category}/${id}`);
+    };
 
     return (
         <div className="home-page">
+            <h1>Welcome to HomePage</h1>  {/* Asegúrate de que esta línea esté presente */}
             <div className="category-buttons">
                 <CategoryButton
                     label="Populares 🔥​"
@@ -70,7 +75,12 @@ function HomePage() {
             </div>
             <div className="books">
                 {books[selectedCategory].map(book => (
-                    <BookCard key={book.id} imgSrc={book.imgSrc} title={book.title} />
+                    <BookCard
+                        key={book.id}
+                        imgSrc={book.imgSrc}
+                        title={book.title}
+                        onClick={() => handleBookClick(selectedCategory, book.id)}
+                    />
                 ))}
             </div>
         </div>
@@ -78,3 +88,5 @@ function HomePage() {
 }
 
 export default HomePage;
+
+

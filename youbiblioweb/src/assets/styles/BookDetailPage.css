@@ -1,0 +1,27 @@
+.book-detail-container {
+    background-color: #292525;
+    color: white;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.book-detail-image {
+    width: 300px;
+    height: auto;
+    border-radius: 15px;
+}
+
+.book-detail-title {
+    margin-top: 20px;
+    font-size: 2em;
+    color: #FFF0D7;
+}
+
+.book-detail-description {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #FFF0D7;
+}

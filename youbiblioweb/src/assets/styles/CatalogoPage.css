@@ -10,15 +10,15 @@
 .search-bar {
     display: flex;
     align-items: center;
-    width: 100%; /* Ajuste de ancho completo */
+    width: 100%; 
     justify-content: center;
     margin-bottom: 20px;
 }
 
 .search-input {
-    flex: 2; /* Aumentar el tamaño del input */
-    padding: 15px; /* Hacer el input más grande */
-    font-size: 1.2em; /* Aumentar el tamaño del texto */
+    flex: 2;
+    padding: 15px; 
+    font-size: 1.2em; 
     border: none;
     border-radius: 5px;
     background-color: white;
@@ -27,11 +27,11 @@
 }
 
 .dropdown-button {
-    flex: 1; /* Ajuste el tamaño del botón de filtro */
+    flex: 1; 
     background-color: #FFF0D7;
     color: #45322E;
-    padding: 15px; /* Hacer el botón más grande */
-    font-size: 1.2em; /* Aumentar el tamaño del texto */
+    padding: 15px; 
+    font-size: 1.2em; 
     margin-right: 10px;
     border-radius: 5px;
     cursor: pointer;
@@ -40,7 +40,7 @@
 }
 
 .search-icon {
-    width: 50px; /* Aumentar el tamaño del botón de búsqueda */
+    width: 50px; 
     height: 50px;
     cursor: pointer;
     margin-left: 5px;
