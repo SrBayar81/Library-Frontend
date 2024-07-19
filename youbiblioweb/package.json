@@ -16,7 +16,7 @@
   "scripts": {
     "start": "set HTTPS=true&&react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject",
     "prestart": "node aspnetcore-https && node aspnetcore-react"
   },
@@ -39,7 +39,12 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.24.8",
+    "@babel/preset-env": "^7.24.8",
+    "@babel/preset-react": "^7.24.7",
+    "babel-jest": "^29.7.0",
     "eslint-config-react-app": "^7.0.1",
     "jest-editor-support": "^32.0.0-beta.1"
+
   }
 }

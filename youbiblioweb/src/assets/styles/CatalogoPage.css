@@ -1,0 +1,157 @@
+.catalogo-container {
+    background-color: #292525;
+    color: white;
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    width: 100%; 
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    flex: 2;
+    padding: 15px; 
+    font-size: 1.2em; 
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: #45322E;
+    margin-right: 10px;
+}
+
+.dropdown-button {
+    flex: 1; 
+    background-color: #FFF0D7;
+    color: #45322E;
+    padding: 15px; 
+    font-size: 1.2em; 
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    width: 50px; 
+    height: 50px;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-bottom: 25px;
+    border-radius: 25%;
+}
+
+    .search-icon img {
+        width: 30px; /* Aumentar el tamaño del icono */
+        height: 30px;
+        object-fit: cover;
+    }
+
+
+.advanced-search {
+    background-color: #FFF0D7;
+    border-radius: 7px;
+    padding: 60px;
+    margin-bottom: 70px;
+    color: #45322E; 
+}
+
+.advanced-search-header {
+    font-size: 25px;
+    background-color: #45322E;
+    color: white;
+    padding: 10px;
+    margin-bottom: 30px;
+    border-radius: 5px 5px 0 0;
+}
+
+
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-button {
+    background-color: #FFF0D7;
+    color: #45322E;
+    padding: 10px;
+    margin-bottom:25px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+    .dropdown-button:hover {
+        background-color: #FFF0D7; 
+    }
+
+        .dropdown-button:hover .arrow-up,
+        .dropdown-button:hover .arrow-down {
+            color: #45322E; 
+        }
+
+
+  
+
+.advanced-search-content {
+    padding: 20px;
+}
+
+.advanced-search-item {
+    margin: 30px 0;
+}
+
+.advanced-search-title {
+    font-size: 22px; 
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.advanced-search-options label {
+    font-size: 16px;
+    display: block;
+    margin: 5px 0;
+    color: #45322E;
+}
+
+.advanced-search-options input {
+    margin-right: 5px;
+}
+
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; 
+}
+
+.book-item {
+    flex: 1 0 30%;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+    .book-item img {
+        width: 220px; 
+        height: 220px;
+        border-radius: 15px;
+    }
+
+    .book-item:hover img {
+        transform: scale(1.15);
+    }
+
+.book-title {
+    margin-top: 20px;
+    color: #FFF0D7; 
+}

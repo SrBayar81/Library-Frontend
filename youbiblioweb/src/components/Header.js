@@ -1,4 +1,7 @@
-﻿import React, { useState } from 'react';
+﻿
+
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../assets/styles/Header.css';
 import iconoLupa from '../assets/image/iconoLupa.jpg';
 import iconoPerfil from '../assets/image/iconoPerfil.jpg';
@@ -22,8 +25,8 @@ function Header() {
                 <span>You</span><strong>Biblio</strong>Web
             </div>
             <nav>
-                <a href="/catalog">Catalogo</a>
-                <a href="/lists">Listas</a>
+                <Link to="/catalog">Catalogo</Link>
+                <Link to="/lists">Listas</Link>
                 <input type="text" placeholder="Buscar" />
                 <button className="search-button"><img src={iconoLupa} alt="Buscar" /></button>
                 <button className="mode-button" onClick={toggleDarkMode}>
@@ -35,12 +38,11 @@ function Header() {
                     <span className="arrow">{menuOpen ? '▲' : '▼'}</span>
                 </div>
             </nav>
-            {menuOpen && <DropdownMenu />}
+            {menuOpen && <DropdownMenu className="header-dropdown-menu" />}
         </header>
     );
 }
 
 export default Header;
-
 
 

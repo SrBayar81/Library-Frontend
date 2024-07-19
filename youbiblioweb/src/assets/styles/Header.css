@@ -1,3 +1,5 @@
+/* Header.css */
+
 .header {
     display: flex;
     align-items: center;
@@ -24,6 +26,7 @@
     font-weight: bold;
     color: #FFF0D7;
 }
+
 nav {
     display: flex;
     align-items: center;
@@ -31,62 +34,63 @@ nav {
     width: 30%;
 }
 
+    nav a {
+        margin: 0 1rem;
+        color: #FFF0D7;
+    }
+
     nav input {
         padding: 0.5rem;
         background-color: #FFF;
         color: #3D3D3D;
     }
 
-nav a {
-    margin: 0 1rem;
-    color: #FFF0D7;
-}
-
-
-nav input {
-    padding: 0.5rem;
-    background-color: #FFF;
-    color: #3D3D3D;
-}
-
 .search-button, .mode-button {
-    padding: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; /* Ajusta el tamaño según sea necesario */
+    height: 30px; /* Ajusta el tamaño según sea necesario */
     background-color: #FFF;
     color: #3D3D3D;
+    margin-bottom: 1.5rem;
+    border: none;
     margin-left: 0.4rem;
+    cursor: pointer;
+    border-radius: 4px; /* Asegúrate de que no sean redondos */
 }
 
     .search-button img {
-        width: 15px; 
-        height: 15px; 
+        width: 20px; /* Ajusta el tamaño de la imagen */
+        height: 20px; /* Ajusta el tamaño de la imagen */
     }
-
-
 
 .profile {
     display: flex;
     align-items: center;
-    margin-left: 3rem; 
-    margin-right: 1rem; 
+    margin-left: 3rem;
+    margin-right: 1rem;
 }
 
     .profile img {
         width: 30px;
         height: 30px;
         margin-right: 0.5rem;
+        border-radius: 50%; /* Mantén la imagen del perfil redonda */
     }
 
 .arrow {
     margin-left: 0.5rem;
 }
 
-.dropdown-menu {
+
+.header-dropdown-menu {
     position: absolute;
-    top: 8%; 
-    right: 0; 
+    top: 96px; /* Ajusta según sea necesario */
+    right: 10px; /* Ajusta según sea necesario */
     background-color: #FFF;
     border: 1px solid #CCC;
     padding: 0.5rem;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 100; 
+    z-index: 100;
 }
