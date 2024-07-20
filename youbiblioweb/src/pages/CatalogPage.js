@@ -1,15 +1,11 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import '../assets/styles/CatalogoPage.css';
 import categoriaLupa from '../assets/image/categoriaLupa.jpg';
-import categoriaBook1 from '../assets/image/categoriaBook1.jpg';
-import categoriaBook2 from '../assets/image/categoriaBook2.jpg';
-import categoriaBook3 from '../assets/image/categoriaBook3.jpg';
-import categoriaBook4 from '../assets/image/categoriaBook4.jpg';
-import categoriaBook5 from '../assets/image/categoriaBook5.jpg';
-import categoriaBook6 from '../assets/image/categoriaBook6.jpg';
 
 const CatalogoPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
+    const [books, setBooks] = useState([]);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [selectedFilter, setSelectedFilter] = useState('Titulo');
     const [advancedSearchOpen, setAdvancedSearchOpen] = useState({
@@ -17,6 +13,20 @@ const CatalogoPage = () => {
         Generos: false,
         Tipo: false
     });
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    useEffect(() => {
+        fetchBooks();
+    }, []);
+
+    const fetchBooks = async (query = '') => {
+        try {
+            const response = await axios.get(`/api/libros${query}`);
+            setBooks(response.data);
+        } catch (error) {
+            console.error("Error fetching books:", error);
+        }
+    };
 
     const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);
@@ -39,11 +49,46 @@ const CatalogoPage = () => {
     };
 
     const handleSearch = () => {
-        console.log('Realizando búsqueda:', searchQuery);
+        let query = `/buscar?${selectedFilter.toLowerCase()}=${searchQuery}`;
+        fetchBooks(query);
+    };
+
+    const handleCreateBook = async (newBook) => {
+        try {
+            await axios.post('/api/libros', newBook);
+            fetchBooks();
+        } catch (error) {
+            console.error("Error creating book:", error);
+        }
+    };
+
+    const handleUpdateBook = async (id, updatedBook) => {
+        try {
+            await axios.put(`/api/libros/${id}`, updatedBook);
+            fetchBooks();
+        } catch (error) {
+            console.error("Error updating book:", error);
+        }
+    };
+
+    const handleDeleteBook = async (id) => {
+        try {
+            await axios.delete(`/api/libros/${id}`);
+            fetchBooks();
+        } catch (error) {
+            console.error("Error deleting book:", error);
+        }
+    };
+
+    const toggleAdmin = () => {
+        setIsAdmin(!isAdmin);
     };
 
     return (
         <div className="catalogo-container">
+            <button className="admin-button" onClick={toggleAdmin}>
+                Admin
+            </button>
             <div className="search-bar">
                 <input
                     type="text"
@@ -63,7 +108,7 @@ const CatalogoPage = () => {
                         <div className="catalog-dropdown-menu">
                             <div className="catalog-dropdown-item" onClick={() => handleFilterSelect('Titulo')}>Titulo</div>
                             <div className="catalog-dropdown-item" onClick={() => handleFilterSelect('Autor')}>Autor</div>
-                            <div className="catalog-dropdown-item" onClick={() => handleFilterSelect('Compañia')}>Compañia</div>
+                            <div className="catalog-dropdown-item" onClick={() => handleFilterSelect('Genero')}>Genero</div>
                         </div>
                     )}
                 </div>
@@ -155,38 +200,61 @@ const CatalogoPage = () => {
                 </div>
             </div>
             <div className="book-list">
-                <div className="book-item">
-                    <img src={categoriaBook1} alt="Book 1" />
-                    <div className="book-title">El Hobbit</div>
-                </div>
-                <div className="book-item">
-                    <img src={categoriaBook2} alt="Book 2" />
-                    <div className="book-title">El Arte de la Guerra</div>
-                </div>
-                <div className="book-item">
-                    <img src={categoriaBook3} alt="Book 3" />
-                    <div className="book-title">Me Alegro que mi Madre haya Muerto</div>
-                </div>
-                <div className="book-item">
-                    <img src={categoriaBook4} alt="Book 4" />
-                    <div className="book-title">Los Juegos Del Hambre</div>
-                </div>
-                <div className="book-item">
-                    <img src={categoriaBook5} alt="Book 5" />
-                    <div className="book-title">Cuentos Macabros</div>
-                </div>
-                <div className="book-item">
-                    <img src={categoriaBook6} alt="Book 6" />
-                    <div className="book-title">La Sombra del Viento</div>
-                </div>
+                {books.map(book => (
+                    <div key={book.id} className="book-item">
+                        <div className="book-title">{book.titulo}</div>
+                        <div className="book-author">{book.autor}</div>
+                        <div className="book-genre">{book.genero}</div>
+                        {isAdmin && (
+                            <div className="admin-actions">
+                                <button className="update-button" onClick={() => handleUpdateBook(book.id, book)}>Modificar</button>
+                                <button className="delete-button" onClick={() => handleDeleteBook(book.id)}>Eliminar</button>
+                            </div>
+                        )}
+                    </div>
+                ))}
             </div>
+            {isAdmin && (
+                <div className="admin-create">
+                    <h3>Crear Nuevo Libro</h3>
+                    <form onSubmit={(e) => {
+                        e.preventDefault();
+                        const newBook = {
+                            titulo: e.target.titulo.value,
+                            autor: e.target.autor.value,
+                            genero: e.target.genero.value,
+                            año: parseInt(e.target.año.value),
+                            descripcion: e.target.descripcion.value,
+                            paginas: parseInt(e.target.paginas.value),
+                            estaDisponible: e.target.estaDisponible.checked,
+                            ubicacion: e.target.ubicacion.value
+                        };
+                        handleCreateBook(newBook);
+                        e.target.reset();
+                    }}>
+                        <input name="titulo" placeholder="Titulo" required />
+                        <input name="autor" placeholder="Autor" required />
+                        <select name="genero" required>
+                            <option value="Accion">Accion</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Misterio">Misterio</option>
+                        </select>
+                        <input name="año" type="number" placeholder="Año" required />
+                        <input name="descripcion" placeholder="Descripción" required />
+                        <input name="paginas" type="number" placeholder="Páginas" required />
+                        <label>
+                            Disponible
+                            <input name="estaDisponible" type="checkbox" />
+                        </label>
+                        <input name="ubicacion" placeholder="Ubicación" required />
+                        <button type="submit">Crear</button>
+                    </form>
+                </div>
+            )}
         </div>
     );
 };
 
 export default CatalogoPage;
-
-
-
-
 
