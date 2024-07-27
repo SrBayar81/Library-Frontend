@@ -1,260 +1,273 @@
 ﻿import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import '../assets/styles/CatalogoPage.css';
-import categoriaLupa from '../assets/image/categoriaLupa.jpg';
 
 const CatalogoPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [books, setBooks] = useState([]);
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [selectedFilter, setSelectedFilter] = useState('Titulo');
-    const [advancedSearchOpen, setAdvancedSearchOpen] = useState({
-        Filtros: false,
-        Generos: false,
-        Tipo: false
-    });
-    const [isAdmin, setIsAdmin] = useState(false);
+    const [adminMode, setAdminMode] = useState(false);
+    const [newBook, setNewBook] = useState({ titulo: '', autor: '', genero: 'Romance', año: '', descripcion: '', paginas: '', estaDisponible: true, ubicacion: '' });
+    const [editMode, setEditMode] = useState(false);
+    const [editingBookId, setEditingBookId] = useState(null);
+
+    const apiUrl = 'https://localhost:7108/api/libros';
 
     useEffect(() => {
         fetchBooks();
     }, []);
 
-    const fetchBooks = async (query = '') => {
+    const fetchBooks = async () => {
         try {
-            const response = await axios.get(`/api/libros${query}`);
-            setBooks(response.data);
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            setBooks(data);
         } catch (error) {
-            console.error("Error fetching books:", error);
+            console.error('Error fetching books:', error);
         }
     };
 
-    const handleSearchChange = (event) => {
-        setSearchQuery(event.target.value);
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
     };
 
-    const toggleDropdown = () => {
-        setDropdownOpen(!dropdownOpen);
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setNewBook((prevBook) => ({ ...prevBook, [name]: value }));
     };
 
-    const handleFilterSelect = (filter) => {
-        setSelectedFilter(filter);
-        setDropdownOpen(false);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (editMode) {
+            await updateBook(editingBookId, newBook);
+        } else {
+            await createBook(newBook);
+        }
+        setNewBook({ titulo: '', autor: '', genero: 'Romance', año: '', descripcion: '', paginas: '', estaDisponible: true, ubicacion: '' });
+        setEditMode(false);
+        setEditingBookId(null);
+        fetchBooks();
     };
 
-    const toggleAdvancedSearch = (section) => {
-        setAdvancedSearchOpen({
-            ...advancedSearchOpen,
-            [section]: !advancedSearchOpen[section]
-        });
-    };
-
-    const handleSearch = () => {
-        let query = `/buscar?${selectedFilter.toLowerCase()}=${searchQuery}`;
-        fetchBooks(query);
-    };
-
-    const handleCreateBook = async (newBook) => {
+    const createBook = async (book) => {
         try {
-            await axios.post('/api/libros', newBook);
+            await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(book)
+            });
+            fetchBooks(); // Revisen esto, sirve para llamar a fetchBooks para actualizar la lista 
+        } catch (error) {
+            console.error('Error creating book:', error);
+        }
+    };
+
+    const updateBook = async (id, book) => {
+        try {
+            await fetch(`${apiUrl}/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(book)
+            });
+            fetchBooks(); // Y este es para llamar a fetchBooks para actualizar la lista después de actualizar un libro
+        } catch (error) {
+            console.error('Error updating book:', error);
+        }
+    };
+
+    const deleteBook = async (id) => {
+        try {
+            await fetch(`${apiUrl}/${id}`, {
+                method: 'DELETE'
+            });
             fetchBooks();
         } catch (error) {
-            console.error("Error creating book:", error);
+            console.error('Error deleting book:', error);
         }
     };
 
-    const handleUpdateBook = async (id, updatedBook) => {
-        try {
-            await axios.put(`/api/libros/${id}`, updatedBook);
-            fetchBooks();
-        } catch (error) {
-            console.error("Error updating book:", error);
-        }
+    const handleEdit = (book) => {
+        setNewBook(book);
+        setEditMode(true);
+        setEditingBookId(book.id);
     };
 
-    const handleDeleteBook = async (id) => {
-        try {
-            await axios.delete(`/api/libros/${id}`);
-            fetchBooks();
-        } catch (error) {
-            console.error("Error deleting book:", error);
-        }
-    };
-
-    const toggleAdmin = () => {
-        setIsAdmin(!isAdmin);
+    const toggleAdminMode = () => {
+        setAdminMode(!adminMode);
     };
 
     return (
-        <div className="catalogo-container">
-            <button className="admin-button" onClick={toggleAdmin}>
-                Admin
-            </button>
+        <div className="catalogo-page">
+            <h1>Catálogo de Libros</h1>
             <div className="search-bar">
                 <input
                     type="text"
-                    className="search-input"
-                    placeholder="Buscar en el catálogo..."
+                    placeholder="Buscar..."
                     value={searchQuery}
                     onChange={handleSearchChange}
+                    className="search-input"
                 />
-                <div className="dropdown">
-                    <button className="dropdown-button" onClick={toggleDropdown}>
-                        {selectedFilter}
-                        <span className={dropdownOpen ? 'arrow-up' : 'arrow-down'}>
-                            {dropdownOpen ? '▲' : '▼'}
-                        </span>
-                    </button>
-                    {dropdownOpen && (
-                        <div className="catalog-dropdown-menu">
-                            <div className="catalog-dropdown-item" onClick={() => handleFilterSelect('Titulo')}>Titulo</div>
-                            <div className="catalog-dropdown-item" onClick={() => handleFilterSelect('Autor')}>Autor</div>
-                            <div className="catalog-dropdown-item" onClick={() => handleFilterSelect('Genero')}>Genero</div>
-                        </div>
-                    )}
-                </div>
-                <button className="search-icon" onClick={handleSearch}>
-                    <img src={categoriaLupa} alt="Buscar" />
-                </button>
+                <button className="search-button">Buscar</button>
             </div>
+            <button className="admin-button" onClick={toggleAdminMode}>
+                Admin
+            </button>
+            {adminMode && (
+                <form onSubmit={handleSubmit} className="admin-create">
+                    <input
+                        type="text"
+                        name="titulo"
+                        placeholder="Título"
+                        value={newBook.titulo}
+                        onChange={handleInputChange}
+                        required
+                    />
+                    <input
+                        type="text"
+                        name="autor"
+                        placeholder="Autor"
+                        value={newBook.autor}
+                        onChange={handleInputChange}
+                        required
+                    />
+                    <select
+                        name="genero"
+                        value={newBook.genero}
+                        onChange={handleInputChange}
+                        required
+                    >
+                        <option value="Romance">Romance</option>
+                        <option value="Comedia">Comedia</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Misterio">Misterio</option>
+                        <option value="Accion">Acción</option>
+                        <option value="Horror">Horror</option>
+                    </select>
+                    <input
+                        type="number"
+                        name="año"
+                        placeholder="Año"
+                        value={newBook.año}
+                        onChange={handleInputChange}
+                        required
+                    />
+                    <textarea
+                        name="descripcion"
+                        placeholder="Descripción"
+                        value={newBook.descripcion}
+                        onChange={handleInputChange}
+                        required
+                    ></textarea>
+                    <input
+                        type="number"
+                        name="paginas"
+                        placeholder="Páginas"
+                        value={newBook.paginas}
+                        onChange={handleInputChange}
+                        required
+                    />
+                    <input
+                        type="text"
+                        name="ubicacion"
+                        placeholder="Ubicación"
+                        value={newBook.ubicacion}
+                        onChange={handleInputChange}
+                        required
+                    />
+                    <button type="submit" className="submit-button">{editMode ? 'Actualizar' : 'Agregar'} Libro</button>
+                </form>
+            )}
             <div className="advanced-search">
-                <div className="advanced-search-header">
-                    Busqueda Avanzada
-                </div>
-                <div className="advanced-search-content">
-                    <div className="advanced-search-item">
-                        <div className="advanced-search-title" onClick={() => toggleAdvancedSearch('Filtros')}>
-                            Filtros
-                            <span className={advancedSearchOpen.Filtros ? 'arrow-down' : 'arrow-right'}>
-                                {advancedSearchOpen.Filtros ? '▼' : '▶'}
-                            </span>
-                        </div>
-                        {advancedSearchOpen.Filtros && (
-                            <div className="advanced-search-options">
-                                <label>
-                                    <input type="checkbox" />
-                                    Novela
-                                </label>
-                                <label>
-                                    <input type="checkbox" />
-                                    Obra Literaria
-                                </label>
-                                <label>
-                                    <input type="checkbox" />
-                                    Comic
-                                </label>
-                            </div>
-                        )}
-                    </div>
-                    <div className="advanced-search-item">
-                        <div className="advanced-search-title" onClick={() => toggleAdvancedSearch('Generos')}>
-                            Generos
-                            <span className={advancedSearchOpen.Generos ? 'arrow-down' : 'arrow-right'}>
-                                {advancedSearchOpen.Generos ? '▼' : '▶'}
-                            </span>
-                        </div>
-                        {advancedSearchOpen.Generos && (
-                            <div className="advanced-search-options">
-                                <label>
-                                    <input type="checkbox" />
-                                    Accion
-                                </label>
-                                <label>
-                                    <input type="checkbox" />
-                                    Drama
-                                </label>
-                                <label>
-                                    <input type="checkbox" />
-                                    Romance
-                                </label>
-                                <label>
-                                    <input type="checkbox" />
-                                    Misterio
-                                </label>
-                            </div>
-                        )}
-                    </div>
-                    <div className="advanced-search-item">
-                        <div className="advanced-search-title" onClick={() => toggleAdvancedSearch('Tipo')}>
-                            Tipo
-                            <span className={advancedSearchOpen.Tipo ? 'arrow-down' : 'arrow-right'}>
-                                {advancedSearchOpen.Tipo ? '▼' : '▶'}
-                            </span>
-                        </div>
-                        {advancedSearchOpen.Tipo && (
-                            <div className="advanced-search-options">
-                                <label>
-                                    <input type="checkbox" />
-                                    Infantil
-                                </label>
-                                <label>
-                                    <input type="checkbox" />
-                                    +18
-                                </label>
-                                <label>
-                                    <input type="checkbox" />
-                                    Adolescentes
-                                </label>
-                            </div>
-                        )}
+                <h2 className="advanced-search-header">Búsqueda avanzada</h2>  
+                <div className="filter-section">
+                    <h3 className="advanced-search-title">Filtros</h3>
+                    <div className="advanced-search-options">
+                        <label>
+                            <input type="checkbox" value="Adulto" />
+                            Adulto
+                        </label>
+                        <label>
+                            <input type="checkbox" value="Adolecentes" />
+                            Adolecentes
+                        </label>
+                        <label>
+                            <input type="checkbox" value="Niños" />
+                            Niños
+                        </label>
                     </div>
                 </div>
+                <div className="genre-section">
+                    <h3 className="advanced-search-title">Géneros</h3>
+                    <div className="advanced-search-options">
+                        <label>
+                            <input type="checkbox" value="Romance" />
+                            Romance
+                        </label>
+                        <label>
+                            <input type="checkbox" value="Comedia" />
+                            Comedia
+                        </label>
+                        <label>
+                            <input type="checkbox" value="Drama" />
+                            Drama
+                        </label>
+                        <label>
+                            <input type="checkbox" value="Misterio" />
+                            Misterio
+                        </label>
+                        <label>
+                            <input type="checkbox" value="Accion" />
+                            Acción
+                        </label>
+                        <label>
+                            <input type="checkbox" value="Horror" />
+                            Horror
+                        </label>
+                    </div>
+                </div>
+                <div className="type-section">
+                    <h3 className="advanced-search-title">Tipo</h3>
+                    <div className="advanced-search-options">
+                        <label>
+                            <input type="checkbox" value="Libro" />
+                            Libro
+                        </label>
+                        <label>
+                            <input type="checkbox" value="Novela" />
+                            Novela
+                        </label>
+                        <label>
+                            <input type="checkbox" value="Manga" />
+                            Manga
+                        </label>
+                    </div>
+                </div>
+                <button className="apply-filters-button">Aplicar filtros</button>
             </div>
             <div className="book-list">
-                {books.map(book => (
-                    <div key={book.id} className="book-item">
-                        <div className="book-title">{book.titulo}</div>
-                        <div className="book-author">{book.autor}</div>
-                        <div className="book-genre">{book.genero}</div>
-                        {isAdmin && (
-                            <div className="admin-actions">
-                                <button className="update-button" onClick={() => handleUpdateBook(book.id, book)}>Modificar</button>
-                                <button className="delete-button" onClick={() => handleDeleteBook(book.id)}>Eliminar</button>
-                            </div>
-                        )}
-                    </div>
-                ))}
+                <ul>
+                    {books.map((book) => (
+                        <li key={book.id} className="book-item">
+                            <h2 className="book-title">{book.titulo}</h2>
+                            {adminMode && (
+                                <div className="admin-actions">
+                                    <button className="update-button" onClick={() => handleEdit(book)}>Editar</button>
+                                    <button className="delete-button" onClick={() => deleteBook(book.id)}>Eliminar</button>
+                                </div>
+                            )}
+                        </li>
+                    ))}
+                </ul>
             </div>
-            {isAdmin && (
-                <div className="admin-create">
-                    <h3>Crear Nuevo Libro</h3>
-                    <form onSubmit={(e) => {
-                        e.preventDefault();
-                        const newBook = {
-                            titulo: e.target.titulo.value,
-                            autor: e.target.autor.value,
-                            genero: e.target.genero.value,
-                            año: parseInt(e.target.año.value),
-                            descripcion: e.target.descripcion.value,
-                            paginas: parseInt(e.target.paginas.value),
-                            estaDisponible: e.target.estaDisponible.checked,
-                            ubicacion: e.target.ubicacion.value
-                        };
-                        handleCreateBook(newBook);
-                        e.target.reset();
-                    }}>
-                        <input name="titulo" placeholder="Titulo" required />
-                        <input name="autor" placeholder="Autor" required />
-                        <select name="genero" required>
-                            <option value="Accion">Accion</option>
-                            <option value="Drama">Drama</option>
-                            <option value="Romance">Romance</option>
-                            <option value="Misterio">Misterio</option>
-                        </select>
-                        <input name="año" type="number" placeholder="Año" required />
-                        <input name="descripcion" placeholder="Descripción" required />
-                        <input name="paginas" type="number" placeholder="Páginas" required />
-                        <label>
-                            Disponible
-                            <input name="estaDisponible" type="checkbox" />
-                        </label>
-                        <input name="ubicacion" placeholder="Ubicación" required />
-                        <button type="submit">Crear</button>
-                    </form>
-                </div>
-            )}
         </div>
     );
 };
 
 export default CatalogoPage;
+
+
+
+
 

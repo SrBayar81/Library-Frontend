@@ -1,6 +1,5 @@
-
-
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../assets/styles/DropdownMenu.css';
 import iconodebarra1 from '../assets/image/iconodebarra1.jpg';
 import iconodebarra2 from '../assets/image/iconodebarra2.jpg';
@@ -19,14 +18,14 @@ function DropdownMenu({ className }) {
                 <img src={iconodebarra2} alt="Favoritos" />
                 <span>FAVORITOS</span>
             </div>
-            <div className="dropdown-item">
+            <Link to="/reservas" className="dropdown-item">
                 <img src={iconodebarra3} alt="Reservas" />
                 <span>RESERVAS</span>
-            </div>
-            <div className="dropdown-item">
+            </Link>
+            <Link to="/prestamos" className="dropdown-item">
                 <img src={iconodebarra4} alt="Prestamos" />
                 <span>PRESTAMOS</span>
-            </div>
+            </Link>
             <div className="dropdown-item">
                 <img src={iconodebarra5} alt="Cerrar Sesion" />
                 <span>CERRAR SESION</span>
@@ -36,4 +35,5 @@ function DropdownMenu({ className }) {
 }
 
 export default DropdownMenu;
+
 

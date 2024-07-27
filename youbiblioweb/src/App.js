@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Header from './components/Header';
@@ -6,6 +5,8 @@ import HomePage from './pages/HomePage';
 import CatalogPage from './pages/CatalogPage';
 import LoginPage from './pages/LoginPage';
 import ProtectedRoute from './components/ProtectedRoute';
+import ReservasPage from './pages/ReservasPage';
+import PrestamosPage from './pages/PrestamosPage'; // Importa la nueva página
 import './assets/styles/index.css';
 
 function App() {
@@ -31,6 +32,26 @@ function App() {
                         <ProtectedRoute isAuthenticated={isAuthenticated}>
                             <Layout>
                                 <CatalogPage />
+                            </Layout>
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/reservas"
+                    element={
+                        <ProtectedRoute isAuthenticated={isAuthenticated}>
+                            <Layout>
+                                <ReservasPage />
+                            </Layout>
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/prestamos"
+                    element={
+                        <ProtectedRoute isAuthenticated={isAuthenticated}>
+                            <Layout>
+                                <PrestamosPage />
                             </Layout>
                         </ProtectedRoute>
                     }

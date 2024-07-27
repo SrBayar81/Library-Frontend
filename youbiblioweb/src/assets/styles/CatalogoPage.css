@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative; /* Añadido para posicionar el botón Admin */
+    position: relative;
 }
 
 .admin-button {
@@ -13,12 +13,12 @@
     top: 10px;
     right: 10px;
     padding: 5px 10px;
-    background-color: #007BFF;
+    background-color: #45322E;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 0.9em; /* Tamaño del botón reducido */
+    font-size: 0.9em;
 }
 
 .search-bar {
@@ -31,180 +31,138 @@
 
 .search-input {
     flex: 2;
-    padding: 15px;
-    font-size: 1.2em;
+    padding: 10px;
     border: none;
-    border-radius: 5px;
-    background-color: white;
-    color: #45322E;
-    margin-right: 10px;
+    border-radius: 5px 0 0 5px;
+    font-size: 1em;
 }
 
-.dropdown-button {
+.search-button {
     flex: 1;
-    background-color: #FFF0D7;
-    color: #45322E;
-    padding: 15px;
-    font-size: 1.2em;
-    margin-right: 10px;
-    border-radius: 5px;
+    padding: 10px;
+    background-color: #45322E;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
     cursor: pointer;
-    display: flex;
-    align-items: center;
+    font-size: 1em;
 }
-
-.search-icon {
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    margin-left: 5px;
-    margin-bottom: 25px;
-    border-radius: 25%;
-}
-
-    .search-icon img {
-        width: 30px; /* Tamaño del icono aumentado */
-        height: 30px;
-        object-fit: cover;
-    }
 
 .advanced-search {
-    background-color: #FFF0D7;
-    border-radius: 7px;
-    padding: 30px; /* Reducido para ajustar al contenido */
-    margin-bottom: 70px;
-    color: #45322E;
-    width: 100%; /* Ajustado para el contenido */
-    max-width: 800px; /* Tamaño máximo para mantener diseño ordenado */
+    background-color: #211F1F;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 800px;
 }
 
 .advanced-search-header {
-    font-size: 25px;
-    background-color: #45322E;
-    color: white;
-    padding: 10px;
-    margin-bottom: 30px;
-    border-radius: 5px 5px 0 0;
-}
-
-.dropdown {
-    position: relative;
-}
-
-.catalog-dropdown-menu {
-    position: absolute;
-    background-color: white;
-    border: 1px solid #ddd;
-    z-index: 1000;
-}
-
-.catalog-dropdown-item {
-    padding: 10px;
-    cursor: pointer;
-}
-
-    .catalog-dropdown-item:hover {
-        background-color: #f0f0f0;
-    }
-
-.advanced-search-content {
-    padding: 20px;
-}
-
-.advanced-search-item {
-    margin: 30px 0;
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #ECEBE9;
 }
 
 .advanced-search-title {
-    font-size: 22px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #D1D0CD;
 }
 
-.advanced-search-options label {
-    font-size: 16px;
-    display: block;
-    margin: 5px 0;
-    color: #45322E;
-}
-
-.advanced-search-options input {
-    margin-right: 5px;
-}
-
-.book-list {
+.advanced-search-options {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    width: 100%;
-    max-width: 1000px; /* Tamaño máximo para mantener diseño ordenado */
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-.book-item {
-    flex: 1 0 30%;
-    text-align: center;
-    padding: 10px;
-    border: 1px solid #ddd;
+    .advanced-search-options label {
+        background-color: #45322E;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        color: white;
+    }
+
+    .advanced-search-options input[type="checkbox"] {
+        margin-right: 5px;
+    }
+
+.apply-filters-button {
+    padding: 10px 20px;
     background-color: #45322E;
-    color: #FFF0D7;
-    position: relative;
-}
-
-.book-title, .book-author, .book-genre {
-    margin: 5px 0;
-}
-
-.admin-actions {
-    margin-top: 10px;
-}
-
-.update-button, .delete-button {
-    padding: 5px 10px;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1em;
+    display: block;
+    margin: 0 auto;
+}
+
+.book-list {
+    width: 100%;
+    max-width: 800px;
+}
+
+.book-item {
+    background-color: #211F1F;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
     color: white;
-    margin-left: 5px;
 }
 
-.update-button {
-    background-color: #FFC107; /* Amarillo */
-}
-
-.delete-button {
-    background-color: #DC3545; /* Rojo */
+.book-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #ECEBE9;
 }
 
 .admin-create {
-    margin: 20px;
+    background-color: #211F1F;
     padding: 20px;
-    border: 1px solid #ddd;
-    background-color: #FFF0D7;
+    border-radius: 10px;
+    margin-bottom: 20px;
     width: 100%;
-    max-width: 600px; /* Tamaño máximo para mantener diseño ordenado */
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
 }
 
-    .admin-create h3 {
+    .admin-create input,
+    .admin-create select,
+    .admin-create textarea,
+    .submit-button {
+        padding: 10px;
         margin-bottom: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1em;
     }
 
-    .admin-create form {
-        display: flex;
-        flex-direction: column;
-    }
+.submit-button {
+    background-color: #45322E;
+    color: white;
+    cursor: pointer;
+}
 
-        .admin-create form input, .admin-create form select {
-            margin-bottom: 10px;
-            padding: 10px;
-        }
+.admin-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
 
-        .admin-create form button {
-            padding: 10px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
+.update-button,
+.delete-button {
+    padding: 5px 10px;
+    background-color: #45322E;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
