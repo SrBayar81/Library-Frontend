@@ -13,23 +13,23 @@ function RegisterPage() {
         e.preventDefault();
         if (nombreUsuario && correo && contrasena && rol) {
             try {
-                const response = await fetch('https://localhost:7108/api/auth/register', {
+                const response = await fetch('https://localhost:7108/api/Auth/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ nombreUsuario, correo, contrasena, rol })
+                    body: JSON.stringify({ nombreUsuario, correo, contraseÃ±a: contrasena, rol }) // AquÃ­, asegÃºrate de que las propiedades coincidan con lo esperado por el backend
                 });
 
                 if (response.ok) {
-                    alert('Usuario creado con éxito');
+                    alert('Usuario creado con Ã©xito');
                     navigate('/login');
                 } else {
                     alert('Error al crear el usuario');
                 }
             } catch (error) {
                 console.error('Error durante el registro:', error);
-                alert('Ocurrió un error. Por favor, inténtelo de nuevo.');
+                alert('OcurriÃ³ un error. Por favor, intÃ©ntelo de nuevo.');
             }
         } else {
             alert('Por favor, complete todos los campos');
@@ -62,7 +62,7 @@ function RegisterPage() {
                         />
                     </div>
                     <div className="register-input-group">
-                        <label htmlFor="contrasena">Contraseña</label>
+                        <label htmlFor="contrasena">ContraseÃ±a</label>
                         <input
                             type="password"
                             id="contrasena"
@@ -90,6 +90,7 @@ function RegisterPage() {
 }
 
 export default RegisterPage;
+
 
 
 

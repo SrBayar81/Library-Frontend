@@ -13,7 +13,7 @@ const CatalogoPage = () => {
 
     useEffect(() => {
         fetchBooks();
-    }, []);1 
+    }, []);  // Corregido aquí
 
     const fetchBooks = async () => {
         try {
@@ -56,7 +56,7 @@ const CatalogoPage = () => {
                 },
                 body: JSON.stringify(book)
             });
-            fetchBooks(); // Revisen esto, sirve para llamar a fetchBooks para actualizar la lista 
+            fetchBooks();
         } catch (error) {
             console.error('Error creating book:', error);
         }
@@ -71,7 +71,7 @@ const CatalogoPage = () => {
                 },
                 body: JSON.stringify(book)
             });
-            fetchBooks(); // Y este es para llamar a fetchBooks para actualizar la lista después de actualizar un libro
+            fetchBooks();
         } catch (error) {
             console.error('Error updating book:', error);
         }
@@ -180,7 +180,7 @@ const CatalogoPage = () => {
                 </form>
             )}
             <div className="advanced-search">
-                <h2 className="advanced-search-header">Búsqueda avanzada</h2>  
+                <h2 className="advanced-search-header">Búsqueda avanzada</h2>
                 <div className="filter-section">
                     <h3 className="advanced-search-title">Filtros</h3>
                     <div className="advanced-search-options">
@@ -266,6 +266,7 @@ const CatalogoPage = () => {
 };
 
 export default CatalogoPage;
+
 
 
 
