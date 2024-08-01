@@ -4,9 +4,11 @@ import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import CatalogPage from './pages/CatalogPage';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import UsuariosPage from './pages/UsuariosPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import ReservasPage from './pages/ReservasPage';
-import PrestamosPage from './pages/PrestamosPage'; // Importa la nueva página
+import PrestamosPage from './pages/PrestamosPage';
 import './assets/styles/index.css';
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/login" element={<LoginPage setIsAuthenticated={setIsAuthenticated} />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/usuarios" element={<UsuariosPage />} />
                 <Route
                     path="/"
                     element={
@@ -72,6 +76,7 @@ const Layout = ({ children }) => {
 };
 
 export default App;
+
 
 
 

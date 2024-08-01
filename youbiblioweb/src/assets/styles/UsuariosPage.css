@@ -1,0 +1,19 @@
+.usuarios-container {
+    padding: 20px;
+}
+
+    .usuarios-container h2 {
+        margin-bottom: 20px;
+    }
+
+    .usuarios-container ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .usuarios-container li {
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }

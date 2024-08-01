@@ -13,7 +13,7 @@ const CatalogoPage = () => {
 
     useEffect(() => {
         fetchBooks();
-    }, []);
+    }, []);1 
 
     const fetchBooks = async () => {
         try {
