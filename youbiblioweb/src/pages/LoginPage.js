@@ -16,7 +16,7 @@ function LoginPage({ setIsAuthenticated }) {
         e.preventDefault();
         if (correo && contraseña) {
             try {
-                const response = await fetch('https://localhost:7108/api/auth/login', {
+                const response = await fetch('https://localhost:7108/api/Auth/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -31,14 +31,14 @@ function LoginPage({ setIsAuthenticated }) {
                     setIsAuthenticated(true);
                     navigate('/');
                 } else {
-                    alert('Invalid credentials');
+                    alert('Credenciales inválidas');
                 }
             } catch (error) {
-                console.error('Error during login:', error);
-                alert('An error occurred. Please try again.');
+                console.error('Error durante el inicio de sesión:', error);
+                alert('Ocurrió un error. Por favor, inténtelo de nuevo.');
             }
         } else {
-            alert('Please enter both correo and contraseña');
+            alert('Por favor, ingrese tanto el correo como la contraseña');
         }
     };
 
@@ -77,11 +77,11 @@ function LoginPage({ setIsAuthenticated }) {
                     <div className="options">
                         <label>
                             <input type="checkbox" />
-                            Remember me
+                            Recuérdame
                         </label>
-                        <a href="#">Forgot your password?</a>
+                        <a href="#">¿Olvidaste tu contraseña?</a>
                     </div>
-                    <button type="submit">Log In</button>
+                    <button type="submit">Iniciar sesión</button>
                 </form>
                 <button onClick={() => navigate('/register')}>Registrarse</button>
             </div>
@@ -90,6 +90,8 @@ function LoginPage({ setIsAuthenticated }) {
 }
 
 export default LoginPage;
+
+
 
 
 

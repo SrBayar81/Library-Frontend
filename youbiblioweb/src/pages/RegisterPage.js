@@ -5,20 +5,20 @@ import '../assets/styles/RegisterPage.css';
 function RegisterPage() {
     const [nombreUsuario, setNombreUsuario] = useState('');
     const [correo, setCorreo] = useState('');
-    const [contrasena, setContrasena] = useState('');
+    const [contraseña, setContraseña] = useState('');
     const [rol, setRol] = useState('');
     const navigate = useNavigate();
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        if (nombreUsuario && correo && contrasena && rol) {
+        if (nombreUsuario && correo && contraseña && rol) {
             try {
                 const response = await fetch('https://localhost:7108/api/Auth/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ nombreUsuario, correo, contraseña: contrasena, rol }) // Aquí, asegúrate de que las propiedades coincidan con lo esperado por el backend
+                    body: JSON.stringify({ nombreUsuario, correo, contraseña, rol }) // Aquí, asegúrate de que las propiedades coincidan con lo esperado por el backend
                 });
 
                 if (response.ok) {
@@ -62,12 +62,12 @@ function RegisterPage() {
                         />
                     </div>
                     <div className="register-input-group">
-                        <label htmlFor="contrasena">Contraseña</label>
+                        <label htmlFor="contraseña">Contraseña</label>
                         <input
                             type="password"
-                            id="contrasena"
-                            value={contrasena}
-                            onChange={(e) => setContrasena(e.target.value)}
+                            id="contraseña"
+                            value={contraseña}
+                            onChange={(e) => setContraseña(e.target.value)}
                             required
                         />
                     </div>
@@ -90,7 +90,6 @@ function RegisterPage() {
 }
 
 export default RegisterPage;
-
 
 
 
