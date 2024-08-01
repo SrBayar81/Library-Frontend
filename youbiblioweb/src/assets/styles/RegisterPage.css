@@ -73,7 +73,21 @@
         color: #ECF0F1;
         border: 2px solid #ECF0F1;
     }
-
+    .register-button {
+        cursor: pointer;
+        color: #ffffff; /* Color del texto */
+        background-color: #007bff; /* Fondo azul */
+        padding: 10px 15px;
+        border-radius: 5px;
+        display: inline-block;
+        text-align: center;
+        transition: background-color 0.3s ease;
+    }
+    
+    .register-button:hover {
+        background-color: #0056b3; /* Fondo más oscuro al pasar el mouse */
+    }
+    
 .register-options {
     display: flex;
     justify-content: space-between;
