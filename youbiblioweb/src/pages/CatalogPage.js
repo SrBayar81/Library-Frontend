@@ -5,15 +5,24 @@ const CatalogoPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [books, setBooks] = useState([]);
     const [adminMode, setAdminMode] = useState(false);
-    const [newBook, setNewBook] = useState({ titulo: '', autor: '', genero: 'Romance', año: '', descripcion: '', paginas: '', estaDisponible: true, ubicacion: '' });
+    const [newBook, setNewBook] = useState({ 
+        titulo: '', 
+        autor: '', 
+        genero: 'Romance', 
+        año: '', 
+        descripcion: '', 
+        paginas: '', 
+        estaDisponible: true, 
+        ubicacion: '' 
+    });
     const [editMode, setEditMode] = useState(false);
     const [editingBookId, setEditingBookId] = useState(null);
 
-    const apiUrl = 'https://localhost:7108/api/libros';
+    const apiUrl = 'https://localhost:7108/api/Libros';
 
     useEffect(() => {
         fetchBooks();
-    }, []);  // Corregido aquí
+    }, []);
 
     const fetchBooks = async () => {
         try {
@@ -41,7 +50,16 @@ const CatalogoPage = () => {
         } else {
             await createBook(newBook);
         }
-        setNewBook({ titulo: '', autor: '', genero: 'Romance', año: '', descripcion: '', paginas: '', estaDisponible: true, ubicacion: '' });
+        setNewBook({ 
+            titulo: '', 
+            autor: '', 
+            genero: 'Romance', 
+            año: '', 
+            descripcion: '', 
+            paginas: '', 
+            estaDisponible: true, 
+            ubicacion: '' 
+        });
         setEditMode(false);
         setEditingBookId(null);
         fetchBooks();
@@ -179,78 +197,17 @@ const CatalogoPage = () => {
                     <button type="submit" className="submit-button">{editMode ? 'Actualizar' : 'Agregar'} Libro</button>
                 </form>
             )}
-            <div className="advanced-search">
-                <h2 className="advanced-search-header">Búsqueda avanzada</h2>
-                <div className="filter-section">
-                    <h3 className="advanced-search-title">Filtros</h3>
-                    <div className="advanced-search-options">
-                        <label>
-                            <input type="checkbox" value="Adulto" />
-                            Adulto
-                        </label>
-                        <label>
-                            <input type="checkbox" value="Adolecentes" />
-                            Adolecentes
-                        </label>
-                        <label>
-                            <input type="checkbox" value="Niños" />
-                            Niños
-                        </label>
-                    </div>
-                </div>
-                <div className="genre-section">
-                    <h3 className="advanced-search-title">Géneros</h3>
-                    <div className="advanced-search-options">
-                        <label>
-                            <input type="checkbox" value="Romance" />
-                            Romance
-                        </label>
-                        <label>
-                            <input type="checkbox" value="Comedia" />
-                            Comedia
-                        </label>
-                        <label>
-                            <input type="checkbox" value="Drama" />
-                            Drama
-                        </label>
-                        <label>
-                            <input type="checkbox" value="Misterio" />
-                            Misterio
-                        </label>
-                        <label>
-                            <input type="checkbox" value="Accion" />
-                            Acción
-                        </label>
-                        <label>
-                            <input type="checkbox" value="Horror" />
-                            Horror
-                        </label>
-                    </div>
-                </div>
-                <div className="type-section">
-                    <h3 className="advanced-search-title">Tipo</h3>
-                    <div className="advanced-search-options">
-                        <label>
-                            <input type="checkbox" value="Libro" />
-                            Libro
-                        </label>
-                        <label>
-                            <input type="checkbox" value="Novela" />
-                            Novela
-                        </label>
-                        <label>
-                            <input type="checkbox" value="Manga" />
-                            Manga
-                        </label>
-                    </div>
-                </div>
-                <button className="apply-filters-button">Aplicar filtros</button>
-            </div>
             <div className="book-list">
                 <ul>
                     {books.map((book) => (
                         <li key={book.id} className="book-item">
                             <h2 className="book-title">{book.titulo}</h2>
+                            <p className="book-author">{book.autor}</p>
+                            <p className="book-genre">{book.genero}</p>
+                            <p className="book-year">{book.año}</p>
+                            <p className="book-description">{book.descripcion}</p>
+                            <p className="book-pages">{book.paginas} páginas</p>
+                            <p className="book-location">{book.ubicacion}</p>
                             {adminMode && (
                                 <div className="admin-actions">
                                     <button className="update-button" onClick={() => handleEdit(book)}>Editar</button>
@@ -266,7 +223,6 @@ const CatalogoPage = () => {
 };
 
 export default CatalogoPage;
-
 
 
 
