@@ -5,13 +5,13 @@ import loginPerfil from '../assets/image/loginPerfil.jpg';
 import loginUser from '../assets/image/loginUser.jpg';
 import loginPassword from '../assets/image/loginPassword.jpg';
 import background from '../assets/image/background.jpg';
- 
-function LoginPage({ setIsAuthenticated }) {
+
+function LoginPage({ setIsAuthenticated, setUserEmail }) {
     const [correo, setCorreo] = useState('');
     const [contraseña, setContraseña] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
- 
+
     const handleLogin = async (e) => {
         e.preventDefault();
         if (correo && contraseña) {
@@ -23,12 +23,13 @@ function LoginPage({ setIsAuthenticated }) {
                     },
                     body: JSON.stringify({ correo, contraseña })
                 });
- 
+
                 if (response.ok) {
                     const data = await response.json();
                     localStorage.setItem('token', data.token);
-                    localStorage.setItem('correo', correo);
+                    localStorage.setItem('correo', correo); // Almacenar el correo
                     setIsAuthenticated(true);
+                    setUserEmail(correo); // Establecer el correo en el estado global
                     navigate('/');
                 } else {
                     alert('Credenciales inválidas');
@@ -41,7 +42,7 @@ function LoginPage({ setIsAuthenticated }) {
             alert('Por favor, ingrese tanto el correo como la contraseña');
         }
     };
- 
+
     return (
         <div className="login-container" style={{ backgroundImage: `url(${background})` }}>
             <div className="login-box">
@@ -88,6 +89,5 @@ function LoginPage({ setIsAuthenticated }) {
         </div>
     );
 }
- 
+
 export default LoginPage;
- 

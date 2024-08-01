@@ -1,6 +1,4 @@
-﻿
-
-import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../assets/styles/Header.css';
 import iconoLupa from '../assets/image/iconoLupa.jpg';
@@ -10,6 +8,14 @@ import DropdownMenu from './DropdownMenu';
 function Header() {
     const [darkMode, setDarkMode] = useState(true);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [userEmail, setUserEmail] = useState('');
+
+    useEffect(() => {
+        const correo = localStorage.getItem('correo');
+        if (correo) {
+            setUserEmail(correo);
+        }
+    }, []);
 
     const toggleDarkMode = () => {
         setDarkMode(!darkMode);
@@ -34,7 +40,7 @@ function Header() {
                 </button>
                 <div className="profile" onClick={toggleMenu}>
                     <img src={iconoPerfil} alt="Perfil" />
-                    <span>Profesora1234</span>
+                    <span>{userEmail}</span> {/* Mostrar el correo del usuario */}
                     <span className="arrow">{menuOpen ? '▲' : '▼'}</span>
                 </div>
             </nav>
@@ -44,5 +50,3 @@ function Header() {
 }
 
 export default Header;
-
-

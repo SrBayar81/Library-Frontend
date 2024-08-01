@@ -13,18 +13,19 @@ import './assets/styles/index.css';
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [userEmail, setUserEmail] = useState('');
 
     return (
         <Router>
             <Routes>
-                <Route path="/login" element={<LoginPage setIsAuthenticated={setIsAuthenticated} />} />
+                <Route path="/login" element={<LoginPage setIsAuthenticated={setIsAuthenticated} setUserEmail={setUserEmail} />} />
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/usuarios" element={<UsuariosPage />} />
                 <Route
                     path="/"
                     element={
                         <ProtectedRoute isAuthenticated={isAuthenticated}>
-                            <Layout>
+                            <Layout userEmail={userEmail}>
                                 <HomePage />
                             </Layout>
                         </ProtectedRoute>
@@ -34,7 +35,7 @@ function App() {
                     path="/catalog"
                     element={
                         <ProtectedRoute isAuthenticated={isAuthenticated}>
-                            <Layout>
+                            <Layout userEmail={userEmail}>
                                 <CatalogPage />
                             </Layout>
                         </ProtectedRoute>
@@ -44,7 +45,7 @@ function App() {
                     path="/reservas"
                     element={
                         <ProtectedRoute isAuthenticated={isAuthenticated}>
-                            <Layout>
+                            <Layout userEmail={userEmail}>
                                 <ReservasPage />
                             </Layout>
                         </ProtectedRoute>
@@ -54,7 +55,7 @@ function App() {
                     path="/prestamos"
                     element={
                         <ProtectedRoute isAuthenticated={isAuthenticated}>
-                            <Layout>
+                            <Layout userEmail={userEmail}>
                                 <PrestamosPage />
                             </Layout>
                         </ProtectedRoute>
@@ -66,17 +67,14 @@ function App() {
     );
 }
 
-const Layout = ({ children }) => {
+const Layout = ({ children, userEmail }) => {
     return (
         <>
-            <Header />
+            <Header userEmail={userEmail} />
             {children}
         </>
     );
 };
 
 export default App;
-
-
-
 
