@@ -17,4 +17,7 @@
   <ItemGroup>
     <None Remove="src\assets\styles\globals.css" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\pages\LoansPage.js" />
+  </ItemGroup>
 </Project>
