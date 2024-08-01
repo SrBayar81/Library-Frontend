@@ -31,7 +31,7 @@ function DropdownMenu({ className }) {
             <div className="dropdown-item">
                 <img src={iconodebarra5} alt="Cerrar Sesion" />
                 <span className="" onClick={() => navigate('/Login')}>
-                    CERRAR SESION
+                    Cerrar Sesion
                 </span>
             </div>
         </div>
