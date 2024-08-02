@@ -1,6 +1,6 @@
 ﻿
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../assets/styles/Header.css';
 import iconoLupa from '../assets/image/iconoLupa.jpg';
@@ -11,6 +11,10 @@ function Header() {
     const [darkMode, setDarkMode] = useState(true);
     const [menuOpen, setMenuOpen] = useState(false);
 
+    useEffect(() => {
+        document.body.className = darkMode ? 'dark-mode' : 'light-mode';
+    }, [darkMode]);
+
     const toggleDarkMode = () => {
         setDarkMode(!darkMode);
     };
@@ -20,12 +24,12 @@ function Header() {
     };
 
     return (
-        <header className={darkMode ? 'header dark' : 'header light'}>
+        <header className="header">
             <div className="logo" onClick={() => window.location.href = '/'}>
                 <span>You</span><strong>Biblio</strong>Web
             </div>
             <nav>
-                <Link to="/catalog">Catalogo</Link>
+                <Link to="/catalog">Catálogo</Link>
                 <Link to="/lists">Listas</Link>
                 <input type="text" placeholder="Buscar" />
                 <button className="search-button"><img src={iconoLupa} alt="Buscar" /></button>
@@ -44,5 +48,3 @@ function Header() {
 }
 
 export default Header;
-
-
